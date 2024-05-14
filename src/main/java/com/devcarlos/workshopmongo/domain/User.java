@@ -2,10 +2,15 @@ package com.devcarlos.workshopmongo.domain;
 
 import java.io.Serializable;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "user") // @Document (ñ é obriago colocar no noma da collection =) e @Id para indicar que se trata de uma coleção do MongoDB (user e o nome da minha tabela la no banco, o mongo usar coleção ao invés de tabela )
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String id;
 	private String name;
 	private String email;
