@@ -2,6 +2,7 @@ package com.devcarlos.workshopmongo.resources;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devcarlos.workshopmongo.domain.User;
+import com.devcarlos.workshopmongo.dto.UserDTO;
 import com.devcarlos.workshopmongo.services.UserService;
 
 @RestController
@@ -21,10 +23,21 @@ public class UserResource {
 	private UserService service;
 	
 	//@RequestMapping(method = RequestMethod.GET)
-	@GetMapping
+	/*@GetMapping
 	public ResponseEntity<List<User>> findALL(){
 		List<User> list = service.findAll();
 		return ResponseEntity.ok().body(list);
+	}*/
+	
+	
+	//vamos mudar p lista DTO
+	@GetMapping
+	public ResponseEntity<List<UserDTO>> findALL(){
+		List<User> list = service.findAll();
+		
+		//vamos converter minha lista de User p lista DTO
+		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 	
 	
