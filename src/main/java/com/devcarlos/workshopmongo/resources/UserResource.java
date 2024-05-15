@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +33,7 @@ public class UserResource {
 	
 	//vamos mudar p lista DTO
 	@GetMapping
+	//@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UserDTO>> findALL(){
 		List<User> list = service.findAll();
 		
@@ -41,6 +43,14 @@ public class UserResource {
 	}
 	
 	
+	//@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping("/{id}")
+	public ResponseEntity<UserDTO> findById(@PathVariable String id){
+		User obj = service.findById(id);
+		//Optional<User> obj = service.findById(id);
+		return ResponseEntity.ok().body(new UserDTO(obj));
+	}
+		
 	
 	//aqui e forma manual
 	/*metodo p buscar todos usuários

@@ -7,6 +7,8 @@ import com.devcarlos.workshopmongo.domain.User;
 
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
+
+
 	//so com isso ja faco operações com database MongoDB
 
 }
