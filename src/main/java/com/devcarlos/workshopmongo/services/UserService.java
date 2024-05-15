@@ -34,8 +34,20 @@ public class UserService {
 		return repository.insert(obj);
 	}
 	
+	//metodo delete
+	public void delete(String id) {
+		
+		//vamos aproveitar excerção do findById
+		findById(id);
+		
+		repository.deleteById(id);
+	}
+	
 	//metodo fromDTO
 	public User fromDTO(UserDTO objDto) {
 		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
+	
+	
+	
 }

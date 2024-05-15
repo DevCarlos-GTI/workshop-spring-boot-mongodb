@@ -44,6 +44,7 @@ public class UserResource {
 	}
 	
 	//inserir
+	//@RequestMapping(method = RequestMethod.POST)
 	@PostMapping
 	public ResponseEntity<Void> insert(@RequestBody UserDTO objDto){
 		
@@ -53,6 +54,16 @@ public class UserResource {
 		//vamos pegar novo obj que foi inserido
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	//deletar
+	//@RequestMapping(method = RequestMethod.DELETE)
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable String id){
+		service.delete(id);
+		
+		//p retonar uma vois=d
+		return ResponseEntity.noContent().build();
 	}
 	
 	//listar
