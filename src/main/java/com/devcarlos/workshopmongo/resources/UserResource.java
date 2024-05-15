@@ -66,6 +66,23 @@ public class UserResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	//atualizar
+	//@RequestMapping(method = RequestMethod.PUT)
+	@PutMapping("/{id}")
+	public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id){
+		
+		User obj = service.fromDTO(objDto);
+		
+		//antes de atualizar setar o Id
+		obj.setId(id);
+		
+		//atualizar
+		service.update(obj);
+		
+		//p retonar uma vois=d
+		return ResponseEntity.noContent().build();
+	}
+	
 	//listar
 	//@RequestMapping(method = RequestMethod.GET)
 		/*@GetMapping
