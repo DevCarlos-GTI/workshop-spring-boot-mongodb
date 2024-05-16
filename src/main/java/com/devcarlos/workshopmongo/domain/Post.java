@@ -1,12 +1,15 @@
 package com.devcarlos.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.devcarlos.workshopmongo.dto.AuthorDTO;
+import com.devcarlos.workshopmongo.dto.CommentDTO;
 
 @Document
 public class Post implements Serializable {
@@ -19,7 +22,10 @@ public class Post implements Serializable {
 	private String title;
 	private String body;
 	
+	//associa
 	private AuthorDTO author;
+	
+	private List<CommentDTO> comments = new ArrayList<>();
 	
 	//associaçao
 	//private User author;
@@ -86,6 +92,14 @@ public class Post implements Serializable {
 		this.author = author;
 	}
 
+	//get e set de comments
+	public List<CommentDTO> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentDTO> comments) {
+		this.comments = comments;
+	}
 
 	@Override
 	public int hashCode() {
@@ -111,4 +125,6 @@ public class Post implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 }
