@@ -1,8 +1,11 @@
 package com.devcarlos.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user") // @Document (ñ é obriago colocar no noma da collection =) e @Id para indicar que se trata de uma coleção do MongoDB (user e o nome da minha tabela la no banco, o mongo usar coleção ao invés de tabela )
@@ -14,6 +17,10 @@ public class User implements Serializable{
 	private String id;
 	private String name;
 	private String email;
+	
+	//vamos iniciar uma lista de posts
+	@DBRef(lazy = true) // lazy = true p garantir q meus posts so vão aparecer quando forcem acessados
+	private List<Post> posts = new ArrayList<>(); //List e a interface e Array é implementação iniciar
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -49,6 +56,16 @@ public class User implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	//meus Get e Set de lista de posts criadas
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -74,6 +91,7 @@ public class User implements Serializable{
 			return false;
 		return true;
 	}
+
 	
 	
 }

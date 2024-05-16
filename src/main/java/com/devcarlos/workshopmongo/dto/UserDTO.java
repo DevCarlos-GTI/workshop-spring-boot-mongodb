@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.devcarlos.workshopmongo.domain.User;
 
+//pega uma copia de user
 public class UserDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

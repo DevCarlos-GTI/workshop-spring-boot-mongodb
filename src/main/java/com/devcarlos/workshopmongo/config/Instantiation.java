@@ -48,6 +48,12 @@ public class Instantiation implements CommandLineRunner {
 		//depois salvar AuthorDTO para receber os ids do users
 		postRepository.saveAll(Arrays.asList(post1,post2));
 		
+		//vamos add os posts
+		maria.getPosts().addAll(Arrays.asList(post1, post2));
+		
+		//depois de add vamos salvar novamente
+		userRepository.save((maria));
+		
 		
 	}
 

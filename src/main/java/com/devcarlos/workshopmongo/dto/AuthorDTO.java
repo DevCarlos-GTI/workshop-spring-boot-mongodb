@@ -15,7 +15,7 @@ public class AuthorDTO implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	//construtor manual
+	//construtor manual pega so Id e name de user
 	public AuthorDTO(User obj) {
 		id = obj.getId();
 		name = obj.getName();
