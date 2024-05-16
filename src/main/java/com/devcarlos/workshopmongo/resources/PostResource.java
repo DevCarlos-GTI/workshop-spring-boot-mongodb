@@ -1,6 +1,7 @@
 package com.devcarlos.workshopmongo.resources;
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,22 @@ public class PostResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	//@RequestMapping(value="/fullsearch", method=RequestMethod.GET)
+	@GetMapping("/fullsearch")
+ 	public ResponseEntity<List<Post>> fullSearch(
+ 			@RequestParam(value="text", defaultValue="") String text,
+ 			@RequestParam(value="minDate", defaultValue="") String minDate,
+ 			@RequestParam(value="maxDate", defaultValue="") String maxDate) {
+		
+		//decofificar o texte
+		text = URL.decodeParam(text);
+		
+		//converter as dadas
+		Date min = URL.convertDate(minDate, new Date(0L));
+		Date max = URL.convertDate(maxDate, new Date());
+		
+		List<Post> list = service.fullSearch(text, min, max);
+		return ResponseEntity.ok().body(list);
+	}
 
 }
