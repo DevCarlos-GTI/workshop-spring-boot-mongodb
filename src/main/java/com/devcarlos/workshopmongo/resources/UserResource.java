@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.devcarlos.workshopmongo.domain.Post;
 import com.devcarlos.workshopmongo.domain.User;
 import com.devcarlos.workshopmongo.dto.UserDTO;
 import com.devcarlos.workshopmongo.services.UserService;
@@ -81,6 +82,14 @@ public class UserResource {
 		
 		//p retonar uma vois=d
 		return ResponseEntity.noContent().build();
+	}
+	
+	//buscar por id post
+	@GetMapping("/{id}/posts")
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+		User obj = service.findById(id);
+		//Optional<User> obj = service.findById(id);
+		return ResponseEntity.ok().body(obj.getPosts());
 	}
 	
 	//listar
