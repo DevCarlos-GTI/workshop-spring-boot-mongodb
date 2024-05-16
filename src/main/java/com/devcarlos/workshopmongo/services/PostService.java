@@ -27,7 +27,8 @@ public class PostService {
 	public List<Post> findByTitle(String text) {
 		
 		//mesmo criado no repositorio
-		return repository.findByTitleContainingIgnoreCase(text);
+		return repository.searchTitle(text);
+		//return repository.findByTitleContainingIgnoreCase(text);
 		
 	}
 }
